@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="bower_components/reveal.js/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Functional Programming</h1>
+					<h3>It ain't scary :)</h3>
+					<p>
+						<small>Created by <a href="http://brenoferreira.github.io">Breno Ferreira</a> / <a href="http://twitter.com/breno_ferreira">@breno_ferreira</a></small>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>PhD in Math</h2>
+						<p>
+							Do I need one?
+						</p>
+					</section>
+
+					<section>
+						<h2>No!</h2>
+						<p>Of course not!</p>
+					</section>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h2>People think it's scary</h2>
+					</section>
+					<section>
+						<h2>Because of this:</h2>
+						<ul>
+							<li>Functor</li>
+							<li>Monoids</li>
+							<li>Catamorphism</li>
+							<li>Monads</li>
+						</ul>
+					</section>
+					<section>
+						<h2>I'll tell you what IS scary!</h2>
+					</section>
+					<section>
+						<h2>Object Oriented Programming</h2>
+						<h2>Because of this:</h2>
+						<ul>
+							<li>Inheritance</li>
+							<li>Method Polimorphism</li>
+							<li>SOLID (SRP, OCP, LSP, ISP, DIP)</li>
+							<li>MVC</li>
+							<li>ORM</li>
+							<li>...</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Functional Programming is <b>unfamiliar</b></h2>
+
+					<ul>
+						<li>Functor</li>
+						<li>Monoids</li>
+						<li>Catamorphism</li>
+						<li>Monads</li>
+					</ul>
+
+					<ul>
+						<li class="fragment">Mappables</li>
+						<li class="fragment">Composables</li>
+						<li class="fragment">Aggregatables</li>
+						<li class="fragment">Chainable</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>So, let's show some code!</h2>
+				</section>
+
+				<section>
+					<section>
+						<h2>Functional Programming is all about functions</h2>
+
+						<pre><code data-trim contenteditable>
+var inc = function(x) {
+	return x + 1;
+}
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Referential Transparency</h2>
+					</section>
+
+					<section>
+						<h2>That means no side-effects!</h2>
+
+						<pre><code data-trim contenteditable>
+var swap = function(ref x, ref y) {
+	var aux = x;
+	x = y;
+	y = x;
+}
+						</code></pre>
+
+						<p><i>Obs: pseudo-code</i></p>
+					</section>
+					<section>
+						<h2>No side-effects!</h2>
+						<pre><code data-trim contenteditable>
+var swap = function(x, y) {
+	return [y, x];
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>So:</h2>
+					</section>
+
+					<section>
+						<h2>Don't do this everywhere!</h2>
+
+						<pre><code data-trim contenteditable>
+document.whatever();
+$('element').whatever();
+var ajax = new XMLHttpRequest();
+console.log();
+						</code></pre>
+
+						<p class="fragment roll-in">They are all undesirable side-effects!</p>
+						<p class="fragment roll-in">Use when appropriate, in the right  places!</p>
+					</section>
+				</section>
+
+			<section>
+				<section>
+					<h2>Recursion</h2>
+
+					<p>
+						<blockquote>In order to understand recursion, one must first understand recursion.</blockquote>
+					</p>
+				</section>
+
+				<section>
+					<h2>Basic recursion</h2>
+
+					<pre><code data-trim contenteditable>
+function factorial(n){
+	if(n === 0 || n === 1) return 1;
+	else return n * factorial(n-1);
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Tail calls</h2>
+
+					<pre><code data-trim contenteditable>
+function factorial(n){
+	var factImpl = function(x, result){
+		if(x === 0 || x === 1) return result;
+		else return factImpl(x-1, result * x);
+	};
+
+	return factImpl(n, 1);
+}
+					</code></pre>
+
+					<p>
+						<a href="http://wiki.ecmascript.org/doku.php?id=harmony:proper_tail_calls"><i>In ES6 Harmony</i></a>
+					</p>
+				</section>
+			</section>
+
+			<section>
+				<h2>Higher Order functions</h2>
+				<blockquote>
+					<p>
+						Tzu-li and Tzu-ssu were
+						boasting about the size of their latest programs. ‘Two-hundred
+						thousand lines,’ said Tzu-li, ‘not counting comments!’ Tzu-ssu
+						responded, ‘Pssh, mine is almost a <strong>million</strong> lines already.’ Master
+						Yuan-Ma said, ‘My best program has five hundred lines.’ Hearing this,
+						Tzu-li and Tzu-ssu were enlightened.
+					</p>
+					<footer>Master Yuan-Ma, <cite>The Book of Programming</cite></footer>
+				</blockquote>
+			</section>
+
+			<section>
+				<section>
+					<h2>Understanding function notation</h2>
+				</section>
+
+				<section>
+					<h2>What does this mean?</h2>
+					<p>f : A → B</p>
+
+					<p class="fragment roll-in">
+						That means: <i>f</i> is a function that takes a value of type <i>A</i>,
+						and returns a value of type <i>B</i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Example:</h2>
+					<p>f : Number → String</p>
+
+					<pre><code data-trim contenteditable>
+function toString(n){
+	return n.toString();
+}
+
+toString(1);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>And this? What does this mean?</h2>
+					<p>f : (A → B) → B</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Back to Higher Order functions</h2>
+				</section>
+
+				<section>
+					<h2>Array functions</h2>
+					<ul>
+						<li class="fragment">map</li>
+						<li class="fragment">reduce</li>
+						<li class="fragment">filter</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Map</h2>
+
+					<p>map: (Array&lt;A&gt;, (A → B)) → Array&lt;B&gt;</p>
+				</section>
+
+				<section>
+					<h2>Which is better?</h2>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+var result = [];
+for(var i = 0; i &lt; array.length; i++){
+	var n = array[i];
+	result.push(n * 2);
+}
+return result;
+					</code></pre>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+array.map(function(n){ return n * 2; });
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>filter</h2>
+
+					<p>filter: (Array&lt;A&gt;, (A → Boolean)) → Array&lt;A&gt;</p>
+				</section>
+
+				<section>
+					<h2>Which is better?</h2>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+var result = [];
+for(var i = 0; i &lt; array.length; i++){
+	var n = array[i];
+	if(n % 2 === 0){
+		result.push(n);
+	}
+}
+return result;
+					</code></pre>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+array.filter(function(n){ return n % 2 === 0; });
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>reduce</h2>
+
+					<p>reduce: (Array&lt;A&gt;, (A, B) → B, init:B) → B</p>
+				</section>
+
+				<section>
+					<h2>Which is better?</h2>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+var result = 1;
+for(var i = 0; i &lt; array.length; i++){
+	var n = array[i];
+	result *= n;
+}
+return result;
+					</code></pre>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+array.reduce(function(n, acc){ return n * acc; }, 1);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Libs with much more</h2>
+					<ul>
+						<li><a href="http://underscorejs.org/">Underscore.js</a></li>
+						<li><a href="http://lodash.com/">Lo-Dash</a></li>
+						<li><a href="http://danieltao.com/lazy.js/">Lazy.js</a></li>
+						<li><a href="https://github.com/Reactive-Extensions/IxJS">Ix.JS</a></li>
+					</ul>
+				</section>
+			</section>
+		</div>
+
+		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+		<script src="bower_components/reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'bower_components/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'bower_components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'bower_components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
