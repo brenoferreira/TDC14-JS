@@ -213,6 +213,157 @@ function factorial(n){
 					</p>
 				</section>
 			</section>
+
+			<section>
+				<h2>Higher Order functions</h2>
+				<blockquote>
+					<p>
+						Tzu-li and Tzu-ssu were
+						boasting about the size of their latest programs. ‘Two-hundred
+						thousand lines,’ said Tzu-li, ‘not counting comments!’ Tzu-ssu
+						responded, ‘Pssh, mine is almost a <strong>million</strong> lines already.’ Master
+						Yuan-Ma said, ‘My best program has five hundred lines.’ Hearing this,
+						Tzu-li and Tzu-ssu were enlightened.
+					</p>
+					<footer>Master Yuan-Ma, <cite>The Book of Programming</cite></footer>
+				</blockquote>
+			</section>
+
+			<section>
+				<section>
+					<h2>Understanding function notation</h2>
+				</section>
+
+				<section>
+					<h2>What does this mean?</h2>
+					<p>f : A → B</p>
+
+					<p class="fragment roll-in">
+						That means: <i>f</i> is a function that takes a value of type <i>A</i>,
+						and returns a value of type <i>B</i>
+					</p>
+				</section>
+
+				<section>
+					<h2>Example:</h2>
+					<p>f : Number → String</p>
+
+					<pre><code data-trim contenteditable>
+function toString(n){
+	return n.toString();
+}
+
+toString(1);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>And this? What does this mean?</h2>
+					<p>f : (A → B) → B</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Back to Higher Order functions</h2>
+				</section>
+
+				<section>
+					<h2>Array functions</h2>
+					<ul>
+						<li class="fragment">map</li>
+						<li class="fragment">reduce</li>
+						<li class="fragment">filter</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Map</h2>
+
+					<p>map: (Array&lt;A&gt;, (A → B)) → Array&lt;B&gt;</p>
+				</section>
+
+				<section>
+					<h2>Which is better?</h2>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+var result = [];
+for(var i = 0; i &lt; array.length; i++){
+	var n = array[i];
+	result.push(n * 2);
+}
+return result;
+					</code></pre>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+array.map(function(n){ return n * 2; });
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>filter</h2>
+
+					<p>filter: (Array&lt;A&gt;, (A → Boolean)) → Array&lt;A&gt;</p>
+				</section>
+
+				<section>
+					<h2>Which is better?</h2>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+var result = [];
+for(var i = 0; i &lt; array.length; i++){
+	var n = array[i];
+	if(n % 2 === 0){
+		result.push(n);
+	}
+}
+return result;
+					</code></pre>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+array.filter(function(n){ return n % 2 === 0; });
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>reduce</h2>
+
+					<p>reduce: (Array&lt;A&gt;, (A, B) → B, init:B) → B</p>
+				</section>
+
+				<section>
+					<h2>Which is better?</h2>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+var result = 1;
+for(var i = 0; i &lt; array.length; i++){
+	var n = array[i];
+	result *= n;
+}
+return result;
+					</code></pre>
+
+					<pre><code data-trim contenteditable>
+var array = [1,2,3,4,5];
+array.reduce(function(n, acc){ return n * acc; }, 1);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Libs with much more</h2>
+					<ul>
+						<li><a href="http://underscorejs.org/">Underscore.js</a></li>
+						<li><a href="http://lodash.com/">Lo-Dash</a></li>
+						<li><a href="http://danieltao.com/lazy.js/">Lazy.js</a></li>
+						<li><a href="https://github.com/Reactive-Extensions/IxJS">Ix.JS</a></li>
+					</ul>
+				</section>
+			</section>
 		</div>
 
 		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
