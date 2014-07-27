@@ -175,7 +175,43 @@ console.log();
 				</section>
 
 			<section>
+				<section>
+					<h2>Recursion</h2>
 
+					<p>
+						<blockquote>In order to understand recursion, one must first understand recursion.</blockquote>
+					</p>
+				</section>
+
+				<section>
+					<h2>Basic recursion</h2>
+
+					<pre><code data-trim contenteditable>
+function factorial(n){
+	if(n === 0 || n === 1) return 1;
+	else return n * factorial(n-1);
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Tail calls</h2>
+
+					<pre><code data-trim contenteditable>
+function factorial(n){
+	var factImpl = function(x, result){
+		if(x === 0 || x === 1) return result;
+		else return factImpl(x-1, result * x);
+	};
+
+	return factImpl(n, 1);
+}
+					</code></pre>
+
+					<p>
+						<a href="http://wiki.ecmascript.org/doku.php?id=harmony:proper_tail_calls"><i>In ES6 Harmony</i></a>
+					</p>
+				</section>
 			</section>
 		</div>
 
