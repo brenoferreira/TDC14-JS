@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="bower_components/reveal.js/css/theme/default.css" id="theme">
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
 
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
@@ -113,6 +113,70 @@
 					</ul>
 				</section>
 
+				<section>
+					<h2>So, let's show some code!</h2>
+				</section>
+
+				<section>
+					<section>
+						<h2>Functional Programming is all about functions</h2>
+
+						<pre><code data-trim contenteditable>
+var inc = function(x) {
+	return x + 1;
+}
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Referential Transparency</h2>
+					</section>
+
+					<section>
+						<h2>That means no side-effects!</h2>
+
+						<pre><code data-trim contenteditable>
+var swap = function(ref x, ref y) {
+	var aux = x;
+	x = y;
+	y = x;
+}
+						</code></pre>
+
+						<p><i>Obs: pseudo-code</i></p>
+					</section>
+					<section>
+						<h2>No side-effects!</h2>
+						<pre><code data-trim contenteditable>
+var swap = function(x, y) {
+	return [y, x];
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>So:</h2>
+					</section>
+
+					<section>
+						<h2>Don't do this everywhere!</h2>
+
+						<pre><code data-trim contenteditable>
+document.whatever();
+$('element').whatever();
+var ajax = new XMLHttpRequest();
+console.log();
+						</code></pre>
+
+						<p class="fragment roll-in">They are all undesirable side-effects!</p>
+						<p class="fragment roll-in">Use when appropriate, in the right  places!</p>
+					</section>
+				</section>
+
+			<section>
+
+			</section>
 		</div>
 
 		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
