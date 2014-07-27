@@ -171,6 +171,34 @@ var swap = function(x, y) {
 					</section>
 
 					<section>
+						<h2>Try to avoid this!</h2>
+
+						<pre><code data-trim contenteditable>
+function f(obj){
+	obj.prop = "some different value";
+}
+						</code></pre>
+
+						<p class="fragment roll-in">Prefer immutability!</p>
+					</section>
+
+					<section>
+						<h2>Don't EVER do this!</h2>
+
+						<pre><code data-trim contenteditable>
+function f(obj){
+	var newFunction = function(){
+		....
+	};
+
+	obj.prototype.someFunction = newFunction;
+}
+						</code></pre>
+
+						<p class="fragment roll-in">Do I need to say why?</p>
+					</section>
+
+					<section>
 						<h2>Don't do this everywhere!</h2>
 
 						<pre><code data-trim contenteditable>
