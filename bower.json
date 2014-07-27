@@ -1,0 +1,21 @@
+{
+  "name": "Functional Programming 101",
+  "version": "0.0.1",
+  "authors": [
+    "Breno Ferreira <bferreira@windowslive.com>"
+  ],
+  "description": "Presentation for TDC 2014 SP",
+  "main": "index.html",
+  "keywords": [
+    "JS"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
