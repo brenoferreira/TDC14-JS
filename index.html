@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Functional programming 101 - TDC2014 SP</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Slides for talk about functional programming in Javascript">
+		<meta name="author" content="Breno Ferreira">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
-		<link rel="stylesheet" href="bower_components/reveal.js/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="bower_components/reveal.js/css/theme/sky.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
@@ -132,6 +132,17 @@ var inc = function(x) {
 				<section>
 					<section>
 						<h2>Referential Transparency</h2>
+
+						<blockquote cite="http://en.wikipedia.org/wiki/Referential_transparency_(computer_science)">
+							<p>
+							An expression is said to be referentially transparent if it can be
+							replaced with its value without changing the behavior of a program
+							(in other words, yielding a program that has the same effects and
+							output on the same input).
+							</p>
+
+							<footer><cite>Wikipedia</cite></footer>
+						</blockquote>
 					</section>
 
 					<section>
@@ -157,6 +168,34 @@ var swap = function(x, y) {
 					</section>
 					<section>
 						<h2>So:</h2>
+					</section>
+
+					<section>
+						<h2>Try to avoid this!</h2>
+
+						<pre><code data-trim contenteditable>
+function f(obj){
+	obj.prop = "some different value";
+}
+						</code></pre>
+
+						<p class="fragment roll-in">Prefer immutability!</p>
+					</section>
+
+					<section>
+						<h2>Don't EVER do this!</h2>
+
+						<pre><code data-trim contenteditable>
+function f(obj){
+	var newFunction = function(){
+		....
+	};
+
+	obj.prototype.someFunction = newFunction;
+}
+						</code></pre>
+
+						<p class="fragment roll-in">Do I need to say why?</p>
 					</section>
 
 					<section>
