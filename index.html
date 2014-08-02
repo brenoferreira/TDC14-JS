@@ -83,7 +83,6 @@
 					</section>
 					<section>
 						<h2>Object Oriented Programming</h2>
-						<h2>Because of this:</h2>
 						<ul>
 							<li>Inheritance</li>
 							<li>Method Polimorphism</li>
@@ -127,21 +126,22 @@
 					</section>
 
 					<section>
-						<blockquote>
-							You'll also never lose an argument ever again. Just throw the word
-							Monad or Functor, or maybe say that foreach loops are useless in
-							the face of any developer who thinks that OOP is the definitive
-							silver-bullet of software development. Watch his bewildered face.
-							It's priceless.
-						</blockquote>
-					</section>
-
-					<section>
 						<p>
 							It will blow your mind!
 						</p>
 
 						<img src="./img/mindblown.jpg" alt="Mind blown" />
+					</section>
+
+					<section>
+						<h2>It's also really good for</h2>
+						<ul>
+							<li>Data manipulation</li>
+							<li>Async computations</li>
+							<li>Concurrency</li>
+							<li>Code expressiveness</li>
+							<li>It's fun!(ctional)</li>
+						</ul>
 					</section>
 				</section>
 
@@ -421,6 +421,22 @@ return result;
 					<pre><code data-trim contenteditable>
 var array = [1,2,3,4,5];
 array.reduce(function(n, acc){ return n * acc; }, 1);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Practical Example</h2>
+					<pre><code data-trim contenteditable>
+var sort = function(array){
+	if(array.length === 0 || array.length === 1) return array;
+	var head = array[0];
+	var tail = array.slice(1);
+
+	var smaller = sort(tail.filter(function(n){ return n &lt= head;}));
+	var bigger = sort(tail.filter(function(n){ return n > head;}));
+
+	return smaller.concat(head).concat(bigger);
+}
 					</code></pre>
 				</section>
 
