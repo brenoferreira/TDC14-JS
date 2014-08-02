@@ -83,7 +83,6 @@
 					</section>
 					<section>
 						<h2>Object Oriented Programming</h2>
-						<h2>Because of this:</h2>
 						<ul>
 							<li>Inheritance</li>
 							<li>Method Polimorphism</li>
@@ -114,7 +113,40 @@
 				</section>
 
 				<section>
-					<h2>So, let's show some code!</h2>
+					<section>
+						<h2>OK, but WHY!?</h2>
+					</section>
+
+					<section>
+						<blockquote>
+							For that simple pleasure of being a superior programmer, and look
+							down at normal developers in their caves banging their heads
+							together with their for loops and mutable state just to create fire.
+						</blockquote>
+					</section>
+
+					<section>
+						<p>
+							It will blow your mind!
+						</p>
+
+						<img src="./img/mindblown.jpg" alt="Mind blown" />
+					</section>
+
+					<section>
+						<h2>It's also really good for</h2>
+						<ul>
+							<li>Data manipulation</li>
+							<li>Async computations</li>
+							<li>Concurrency</li>
+							<li>Code expressiveness</li>
+							<li>It's fun!(ctional)</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>So, let's see some code!</h2>
 				</section>
 
 				<section>
@@ -255,14 +287,13 @@ function factorial(n){
 
 			<section>
 				<h2>Higher Order functions</h2>
-				<blockquote>
+				<blockquote style="width: 900px; font-size: 30px">
 					<p>
-						Tzu-li and Tzu-ssu were
-						boasting about the size of their latest programs. ‘Two-hundred
-						thousand lines,’ said Tzu-li, ‘not counting comments!’ Tzu-ssu
-						responded, ‘Pssh, mine is almost a <strong>million</strong> lines already.’ Master
-						Yuan-Ma said, ‘My best program has five hundred lines.’ Hearing this,
-						Tzu-li and Tzu-ssu were enlightened.
+						Tzu-li and Tzu-ssu wereboasting about the size of their latest programs.  <br />
+						‘Two-hundred thousand lines,’ said Tzu-li, ‘not counting comments!’ <br />
+						Tzu-ssu responded, ‘Pssh, mine is almost a <strong>million</strong> lines already.’ <br />
+						Master Yuan-Ma said, ‘My best program has five hundred lines.’ <br />
+						Hearing this, Tzu-li and Tzu-ssu were enlightened.
 					</p>
 					<footer>Master Yuan-Ma, <cite>The Book of Programming</cite></footer>
 				</blockquote>
@@ -394,12 +425,36 @@ array.reduce(function(n, acc){ return n * acc; }, 1);
 				</section>
 
 				<section>
+					<h2>Practical Example</h2>
+					<pre><code data-trim contenteditable>
+var sort = function(array){
+	if(array.length === 0 || array.length === 1) return array;
+	var head = array[0];
+	var tail = array.slice(1);
+
+	var smaller = sort(tail.filter(function(n){ return n &lt= head;}));
+	var bigger = sort(tail.filter(function(n){ return n > head;}));
+
+	return smaller.concat(head).concat(bigger);
+}
+					</code></pre>
+				</section>
+
+				<section>
 					<h2>Libs with much more</h2>
 					<ul>
 						<li><a href="http://underscorejs.org/">Underscore.js</a></li>
 						<li><a href="http://lodash.com/">Lo-Dash</a></li>
 						<li><a href="http://danieltao.com/lazy.js/">Lazy.js</a></li>
 						<li><a href="https://github.com/Reactive-Extensions/IxJS">Ix.JS</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Libs with Immutable Data Structures</h2>
+					<ul>
+						<li><a href="https://github.com/swannodette/mori/">Mori.js</a></li>
+						<li><a href="https://github.com/facebook/immutable-js/">Immutable.JS</a></li>
 					</ul>
 				</section>
 			</section>
